@@ -1,0 +1,35 @@
+COMO ADICIONAR FOTOS REAIS NO TESTE DE ESTILO
+=============================================
+
+O teste já funciona 100% com os desenhos vetoriais (nunca quebram e
+combinam com a identidade da Luana). Mas se você quiser trocar por
+FOTOS reais das peças, é bem simples:
+
+PASSO 1 — Coloque a foto aqui
+-----------------------------
+Salve a imagem dentro desta pasta "img".
+Dica: use fotos QUADRADAS (ex: 400x400) para ficarem alinhadas.
+Formatos: .jpg, .png ou .webp
+Nomes sem espaços e sem acento (ex: argola-minimalista.jpg)
+
+PASSO 2 — Aponte a foto no arquivo
+----------------------------------
+Abra "teste-de-estilo-interativo.html" e procure a opção que quer trocar.
+Adicione o campo  img:'img/nome-da-foto.jpg'  na opção.
+
+Exemplo — trocar a "Argola minimalista":
+
+    ANTES:
+    {icon:'earring_hoop', label:'Argola minimalista', s:'esportivo'},
+
+    DEPOIS:
+    {icon:'earring_hoop', label:'Argola minimalista', s:'esportivo', img:'img/argola-minimalista.jpg'},
+
+Pronto! Onde tiver "img", a foto aparece. Onde não tiver, continua o desenho.
+Você pode misturar: algumas peças com foto e outras com desenho.
+
+IMPORTANTE
+----------
+- NÃO mude o campo "s:" (é ele que define o estilo/pontuação).
+- Se for publicar online, envie a pasta "img" junto com o HTML.
+- Prefira fotos suas ou com direito de uso, para evitar problema de imagem.

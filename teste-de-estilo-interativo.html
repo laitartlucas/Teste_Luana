@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Descubra os estilos que mais combinam com a sua essência. Teste de estilo interativo por Luana Laitart.">
+<meta name="theme-color" content="#2A1508">
+<title>Teste de Estilo | Luana Laitart</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon: monograma LL dourado -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232A1508'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23E4B840' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+
+<style>
+  :root{
+    /* ---- Identidade Luana Laitart (paleta da página de vendas) ---- */
+    --bg:        #EDE8E1;   /* fundo bege */
+    --bg-2:      #E4DCCF;   /* bege mais quente p/ gradiente */
+    --paper:     #F5F1EA;   /* cartão */
+    --paper-2:   #FBF8F2;   /* superfície clara */
+    --ink:       #2A1508;   /* marrom espresso (texto/headers) */
+    --ink-soft:  #5A3820;   /* marrom médio */
+    --muted:     #8a7a68;   /* texto secundário */
+    --line:      #e0d6c6;   /* bordas */
+
+    --gold-deep:   #A87020;
+    --gold:        #C89030;
+    --gold-light:  #E4B840;
+    --gold-bright: #F0E080;
+    --gold-tint:   #F7EFD9;  /* fundo dourado bem claro (selecionado) */
+
+    --grad-gold:      linear-gradient(135deg, #A87020 0%, #E4B840 48%, #F0E080 65%, #C89030 100%);
+    --grad-gold-hov:  linear-gradient(135deg, #8E5F14 0%, #D4A020 48%, #EAD060 65%, #A87020 100%);
+
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans:  'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+    --radius: 20px;
+    --shadow: 0 24px 60px -20px rgba(42,21,8,0.30);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, var(--bg-2), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .app{
+    width:100%;
+    max-width:660px;
+    background:var(--paper);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.6);
+    animation:appIn .6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes appIn{from{opacity:0; transform:translateY(14px) scale(.99);} to{opacity:1; transform:none;}}
+
+  /* ---------------- Header ---------------- */
+  .header{
+    background:
+      radial-gradient(600px 200px at 50% -40%, rgba(228,184,64,0.18), transparent 70%),
+      var(--ink);
+    color:var(--paper);
+    padding:30px 30px 24px;
+    text-align:center;
+    position:relative;
+  }
+  .header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:var(--grad-gold);
+  }
+  .logo-img{
+    display:block;
+    height:78px; width:auto;
+    margin:0 auto 12px;
+    object-fit:contain;
+    filter:drop-shadow(0 4px 10px rgba(228,184,64,0.35));
+  }
+  .header h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:27px;
+    letter-spacing:.5px;
+  }
+  .header .brand{
+    font-size:11px;
+    margin-top:8px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold-light);
+  }
+
+  /* ---------------- Progresso ---------------- */
+  .progress-wrap{height:6px; background:rgba(42,21,8,0.10);}
+  .progress-bar{
+    height:100%; width:0%;
+    background:var(--grad-gold);
+    transition:width .4s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ---------------- Conteúdo ---------------- */
+  .content{padding:30px 30px 8px; min-height:360px;}
+  .fade{animation:fade .35s ease both;}
+  @keyframes fade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+
+  .intro p{font-size:15px; line-height:1.7; margin-bottom:14px; color:var(--ink-soft);}
+  .intro .lead{font-family:var(--serif); font-size:19px; color:var(--ink); line-height:1.5;}
+
+  /* Botões */
+  .btn-primary{
+    font-family:var(--sans);
+    background:var(--grad-gold);
+    color:var(--ink);
+    border:none;
+    padding:14px 30px;
+    border-radius:40px;
+    font-size:14px; font-weight:700;
+    letter-spacing:.4px;
+    cursor:pointer;
+    box-shadow:0 10px 24px -10px rgba(168,112,32,0.7);
+    transition:transform .15s ease, box-shadow .2s ease, background .3s ease;
+  }
+  .btn-primary:hover{background:var(--grad-gold-hov); transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(168,112,32,0.8);}
+  .btn-primary:active{transform:translateY(0);}
+  .btn-primary:disabled{opacity:.45; cursor:not-allowed; box-shadow:none; transform:none;}
+
+  .intro-cta{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+
+  .q-counter{
+    font-size:11px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold-deep); font-weight:700; margin-bottom:10px;
+  }
+  .q-text{
+    font-family:var(--serif);
+    font-size:22px; font-weight:600; line-height:1.35;
+    margin-bottom:6px; color:var(--ink);
+  }
+  .hint{
+    font-size:12px; color:var(--muted); margin:8px 0 16px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .hint .count{
+    margin-left:auto; font-weight:700; color:var(--gold-deep);
+    background:var(--gold-tint); border:1px solid var(--gold-light);
+    border-radius:20px; padding:2px 10px; font-size:11px;
+  }
+
+  /* Opções de texto */
+  .options-text{display:flex; flex-direction:column; gap:10px;}
+  .opt-text{
+    display:flex; align-items:center; gap:14px;
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:13px 16px;
+    font-size:14px; line-height:1.4;
+    cursor:pointer; background:var(--paper-2);
+    transition:border-color .15s, background .15s, transform .1s;
+  }
+  .opt-text:hover{border-color:var(--gold-light); background:#fff; transform:translateX(2px);}
+  .opt-text .badge{
+    flex:0 0 auto;
+    width:26px;height:26px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700;
+    background:#efe7d7; color:var(--ink-soft);
+    transition:all .15s;
+  }
+  .opt-text.selected{background:var(--ink); border-color:var(--ink); color:var(--paper);}
+  .opt-text.selected .badge{background:var(--grad-gold); color:var(--ink);}
+
+  /* Opções visuais */
+  .options-visual{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+  .opt-visual{
+    position:relative;
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    background:var(--paper-2);
+    padding:12px 6px 12px;
+    cursor:pointer; text-align:center;
+    color:var(--ink);
+    transition:border-color .15s, background .15s, transform .1s, box-shadow .15s;
+  }
+  .opt-visual:hover{border-color:var(--gold-light); background:#fff; transform:translateY(-2px); box-shadow:0 10px 20px -12px rgba(42,21,8,.35);}
+  .opt-visual.selected{border-color:var(--gold); background:var(--gold-tint); box-shadow:inset 0 0 0 1px var(--gold);}
+  .opt-visual svg{width:46px; height:46px; margin-bottom:6px;}
+  .opt-visual img{width:100%; height:74px; object-fit:cover; border-radius:9px; margin-bottom:6px; display:block;}
+  .opt-label{font-size:11px; line-height:1.25; color:var(--ink-soft); display:block;}
+  .opt-visual .check{
+    position:absolute; top:7px; right:7px;
+    width:20px;height:20px; border-radius:50%;
+    background:var(--grad-gold);
+    display:none; align-items:center; justify-content:center;
+    box-shadow:0 2px 6px rgba(168,112,32,.5);
+  }
+  .opt-visual.selected .check{display:flex;}
+  .check svg{width:11px !important; height:11px !important; margin:0 !important;}
+
+  /* ---------------- Rodapé nav ---------------- */
+  .footer-nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 30px 26px; gap:12px;
+  }
+  .link-btn{
+    background:none; border:none; color:var(--ink-soft);
+    font-family:var(--sans); font-size:13px; font-weight:600;
+    cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+    transition:color .15s;
+  }
+  .link-btn:hover{color:var(--gold-deep);}
+  .kbd-tip{font-size:10.5px; color:var(--muted); text-align:center; padding:0 30px 16px; letter-spacing:.3px;}
+
+  /* ---------------- Resultado ---------------- */
+  .result{text-align:center;}
+  .result .eyebrow{font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-deep); font-weight:700;}
+  .result h2{font-family:var(--serif); font-size:26px; margin:6px 0 4px; color:var(--ink);}
+  .result .sub{font-size:13px; color:var(--muted); margin-bottom:22px;}
+
+  .style-card{
+    position:relative;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-left:5px solid var(--sc, var(--gold));
+    border-radius:14px;
+    padding:16px 18px 18px;
+    margin-bottom:14px; text-align:left;
+    animation:fade .45s ease both;
+  }
+  .style-card .rank{
+    font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--gold-deep); font-weight:700;
+  }
+  .style-card .top{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:3px 0 8px;}
+  .style-card h3{font-family:var(--serif); font-size:20px; color:var(--ink);}
+  .style-card .match{font-size:22px; font-weight:700; color:var(--sc, var(--gold-deep)); line-height:1; font-family:var(--serif);}
+  .style-card p{font-size:13px; line-height:1.55; color:var(--ink-soft);}
+  .tips{list-style:none; margin-top:12px; display:flex; flex-wrap:wrap; gap:7px;}
+  .tips li{
+    font-size:11px; color:var(--ink-soft);
+    background:#fff; border:1px solid var(--line);
+    border-radius:20px; padding:5px 11px;
+  }
+  .tips li::before{content:"✦ "; color:var(--sc, var(--gold)); font-weight:700;}
+
+  /* DNA de estilo */
+  .dna{margin:26px 0 6px; text-align:left;}
+  .dna h4{font-family:var(--serif); font-size:16px; margin-bottom:4px; color:var(--ink);}
+  .dna .cap{font-size:11.5px; color:var(--muted); margin-bottom:14px;}
+  .dna-row{display:flex; align-items:center; gap:10px; margin-bottom:9px;}
+  .dna-row .name{flex:0 0 96px; font-size:12px; font-weight:600; color:var(--ink-soft);}
+  .dna-track{flex:1; height:9px; background:#e7ddcd; border-radius:6px; overflow:hidden; display:block;}
+  .dna-fill{display:block; height:9px; border-radius:6px; transform-origin:left center; animation:grow .9s cubic-bezier(.3,.8,.3,1) both;}
+  @keyframes grow{from{transform:scaleX(0);} to{transform:scaleX(1);}}
+  .dna-row .pct{flex:0 0 38px; text-align:right; font-size:11.5px; font-weight:700; color:var(--ink);}
+
+  .result-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:26px;}
+  .btn-ghost{
+    font-family:var(--sans);
+    background:#fff; color:var(--ink);
+    border:1.5px solid var(--line);
+    padding:12px 20px; border-radius:40px;
+    font-size:13px; font-weight:600; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .15s, transform .15s, background .15s;
+  }
+  .btn-ghost:hover{border-color:var(--gold); transform:translateY(-2px);}
+  .btn-ghost svg{width:16px; height:16px;}
+  .toast{
+    position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--paper);
+    padding:12px 20px; border-radius:30px; font-size:13px; font-weight:600;
+    box-shadow:0 12px 30px -8px rgba(0,0,0,.4);
+    opacity:0; pointer-events:none; transition:all .3s ease; z-index:50;
+    border:1px solid rgba(228,184,64,.4);
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  .hidden{display:none !important;}
+
+  /* ---------------- Responsivo ---------------- */
+  @media (max-width:560px){
+    .content{padding:24px 20px 8px; min-height:0;}
+    .footer-nav{padding:14px 20px 22px;}
+    .header{padding:26px 20px 22px;}
+    .header h1{font-size:23px;}
+    .q-text{font-size:19px;}
+    .options-visual{grid-template-columns:repeat(3,1fr); gap:10px;}
+    .opt-visual img{height:64px;}
+    .kbd-tip{display:none;}
+  }
+  @media (max-width:360px){
+    .options-visual{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <img class="logo-img" src="logo.png" alt="Luana Laitart">
+    <h1>Teste de Estilo</h1>
+    <div class="brand">Luana Laitart · Consultoria de Imagem</div>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div class="content" id="content"></div>
+
+  <div class="footer-nav" id="footerNav">
+    <button class="link-btn" id="backBtn">← voltar</button>
+    <button class="btn-primary" id="nextBtn" disabled>continuar →</button>
+  </div>
+  <div class="kbd-tip" id="kbdTip"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   TESTE DE ESTILO — Luana Laitart
+   ---------------------------------------------------------------------
+   Como adicionar FOTOS reais no lugar dos desenhos:
+   1) Crie uma pasta "img" ao lado deste arquivo.
+   2) Coloque a foto da peça lá (ex: img/argola-minimalista.jpg).
+   3) Adicione o campo  img:'img/argola-minimalista.jpg'  na opção.
+   Se "img" existir, a foto aparece; senão, usa o desenho vetorial.
+   ===================================================================== */
+
+/* ---------- Ícones vetoriais (usam currentColor = tom da marca) ---------- */
+const ICONS = {
+  earring_hoop: `<svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="14" fill="none" stroke="currentColor" stroke-width="4"/><line x1="32" y1="12" x2="32" y2="4" stroke="currentColor" stroke-width="3"/></svg>`,
+  earring_drop: `<svg viewBox="0 0 64 64"><circle cx="32" cy="16" r="6" fill="currentColor"/><rect x="29" y="22" width="6" height="26" rx="3" fill="currentColor"/></svg>`,
+  earring_flower: `<svg viewBox="0 0 64 64"><g fill="currentColor"><circle cx="32" cy="20" r="5"/><circle cx="22" cy="26" r="5"/><circle cx="42" cy="26" r="5"/><circle cx="26" cy="36" r="5"/><circle cx="38" cy="36" r="5"/></g></svg>`,
+  earring_long: `<svg viewBox="0 0 64 64"><rect x="28" y="10" width="8" height="44" rx="4" fill="currentColor"/></svg>`,
+  earring_chain: `<svg viewBox="0 0 64 64"><path d="M22 14 L42 14 L24 30 L40 30 L20 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  earring_round_stone: `<svg viewBox="0 0 64 64"><circle cx="32" cy="30" r="13" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="32" cy="30" r="6" fill="#C89030"/></svg>`,
+  earring_fruit: `<svg viewBox="0 0 64 64"><circle cx="26" cy="40" r="7" fill="#9c2b2b"/><circle cx="40" cy="40" r="7" fill="#C89030"/><path d="M26 33 Q30 18 40 16" fill="none" stroke="currentColor" stroke-width="3"/><path d="M40 33 Q34 22 40 16" fill="none" stroke="currentColor" stroke-width="3"/></svg>`,
+
+  top_basic: `<svg viewBox="0 0 64 64"><path d="M18 16 L26 10 L38 10 L46 16 L46 54 L18 54 Z" fill="currentColor"/></svg>`,
+  top_shirt: `<svg viewBox="0 0 64 64"><path d="M16 18 L26 10 L32 16 L38 10 L48 18 L44 26 L40 22 L40 54 L24 54 L24 22 L20 26 Z" fill="currentColor"/></svg>`,
+  top_ruffle: `<svg viewBox="0 0 64 64"><path d="M20 16 Q24 10 32 12 Q40 10 44 16 L44 50 Q32 56 20 50 Z" fill="currentColor"/><circle cx="22" cy="20" r="3" fill="currentColor"/><circle cx="42" cy="20" r="3" fill="currentColor"/></svg>`,
+  top_slip: `<svg viewBox="0 0 64 64"><path d="M24 12 L24 18 L20 50 L44 50 L40 18 L40 12 L34 16 L30 16 Z" fill="currentColor"/></svg>`,
+  top_print: `<svg viewBox="0 0 64 64"><path d="M18 16 L26 10 L38 10 L46 16 L46 54 L18 54 Z" fill="currentColor"/><circle cx="28" cy="30" r="3" fill="#F0E080"/><circle cx="38" cy="40" r="3" fill="#F0E080"/><circle cx="24" cy="44" r="3" fill="#F0E080"/></svg>`,
+  top_colorblock: `<svg viewBox="0 0 64 64"><path d="M18 16 L26 10 L38 10 L46 16 L46 54 L32 54 L32 10 Z" fill="currentColor"/><path d="M32 10 L26 10 L18 16 L18 54 L32 54 Z" fill="#C89030"/></svg>`,
+  top_bow: `<svg viewBox="0 0 64 64"><path d="M18 18 L26 10 L38 10 L46 18 L46 54 L18 54 Z" fill="currentColor"/><path d="M26 30 L32 36 L38 30 L36 42 L28 42 Z" fill="#F0E080"/></svg>`,
+
+  pant_jeans: `<svg viewBox="0 0 64 64"><path d="M22 8 L42 8 L40 56 L33 56 L32 26 L31 56 L24 56 Z" fill="currentColor"/></svg>`,
+  pant_wide: `<svg viewBox="0 0 64 64"><path d="M20 8 L44 8 L46 56 L34 56 L32 24 L30 56 L18 56 Z" fill="currentColor"/></svg>`,
+  pant_belt: `<svg viewBox="0 0 64 64"><path d="M20 10 L44 10 L42 56 L33 56 L32 26 L31 56 L22 56 Z" fill="currentColor"/><rect x="18" y="8" width="28" height="5" fill="#C89030"/></svg>`,
+  pant_leather: `<svg viewBox="0 0 64 64"><path d="M22 8 L42 8 L40 56 L33 56 L32 26 L31 56 L24 56 Z" fill="#2A1508"/></svg>`,
+  pant_cargo: `<svg viewBox="0 0 64 64"><path d="M20 8 L44 8 L42 56 L33 56 L32 26 L31 56 L22 56 Z" fill="currentColor"/><rect x="16" y="32" width="8" height="10" fill="currentColor"/><rect x="40" y="32" width="8" height="10" fill="currentColor"/></svg>`,
+  pant_tailored: `<svg viewBox="0 0 64 64"><path d="M22 8 L42 8 L40 56 L33 56 L32 26 L31 56 L24 56 Z" fill="#4a3420"/><line x1="28" y1="14" x2="27" y2="52" stroke="#F0E080" stroke-width="1.5"/><line x1="36" y1="14" x2="37" y2="52" stroke="#F0E080" stroke-width="1.5"/></svg>`,
+  pant_floral: `<svg viewBox="0 0 64 64"><path d="M20 8 L44 8 L46 56 L34 56 L32 24 L30 56 L18 56 Z" fill="#9c2b2b"/><circle cx="28" cy="20" r="3" fill="#F0E080"/><circle cx="38" cy="34" r="3" fill="#fff"/><circle cx="26" cy="42" r="3" fill="#F0E080"/></svg>`,
+
+  shoe_sneaker: `<svg viewBox="0 0 64 64"><path d="M8 42 Q20 30 32 32 L50 30 Q58 30 58 38 L58 44 L8 44 Z" fill="currentColor"/></svg>`,
+  shoe_heel: `<svg viewBox="0 0 64 64"><path d="M10 38 Q24 28 40 30 L52 26 L54 40 L20 44 L10 42 Z" fill="#2A1508"/><rect x="48" y="38" width="4" height="16" fill="#2A1508"/></svg>`,
+  shoe_flat_bow: `<svg viewBox="0 0 64 64"><path d="M8 38 Q24 28 42 30 L54 32 L54 42 L8 44 Z" fill="currentColor"/><circle cx="44" cy="34" r="4" fill="#C89030"/></svg>`,
+  shoe_boot: `<svg viewBox="0 0 64 64"><path d="M22 10 L40 10 L40 36 L54 40 L54 48 L18 48 L18 40 Z" fill="#2A1508"/></svg>`,
+  shoe_metallic: `<svg viewBox="0 0 64 64"><path d="M10 36 Q24 26 42 28 L52 30 L52 40 L46 56 L40 56 L40 42 L10 42 Z" fill="#C89030"/></svg>`,
+  shoe_loafer: `<svg viewBox="0 0 64 64"><path d="M8 38 Q24 28 42 30 L56 34 L56 44 L8 44 Z" fill="#2A1508"/><rect x="28" y="32" width="10" height="6" fill="#F0E080"/></svg>`,
+  shoe_heeled_sandal: `<svg viewBox="0 0 64 64"><path d="M10 40 L50 38 L50 44 L10 46 Z" fill="#C89030"/><circle cx="48" cy="44" r="10" fill="none" stroke="#2A1508" stroke-width="4"/></svg>`,
+};
+const CHECK = `<svg viewBox="0 0 24 24" fill="none" stroke="#2A1508" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>`;
+
+/* ---------- Estilos (7) — descrições e peças-chave corretas ---------- */
+const STYLES = {
+  tradicional: { name:'Tradicional', color:'#8a6a45',
+    desc:'Você valoriza o clássico e o atemporal. Peças versáteis, cortes limpos e uma imagem sempre bem apresentada e confiável.',
+    tips:['Camisa de alfaiataria','Calça reta','Blazer estruturado','Tons neutros'] },
+  elegante: { name:'Elegante', color:'#5A3820',
+    desc:'Seu estilo é refinado e bem estruturado, com peças de alta qualidade, cortes clássicos e tons sóbrios que exalam sofisticação.',
+    tips:['Alfaiataria impecável','Tecidos nobres','Scarpin','Monocromia sóbria'] },
+  romantico: { name:'Romântico', color:'#cf9e8f',
+    desc:'Você tem forte conexão com a suavidade e a feminilidade — vestidos fluidos, rendas, babados, laços e cores suaves.',
+    tips:['Vestidos fluidos','Babados e laços','Tons pastel','Sapatilha'] },
+  sexy: { name:'Sexy', color:'#9c2b2b',
+    desc:'Você prefere roupas que destacam suas curvas e sua sensualidade, sem perder a elegância.',
+    tips:['Peças ajustadas','Decotes e fendas','Couro e cetim','Salto alto'] },
+  moderno: { name:'Moderno', color:'#7d8a80',
+    desc:'Seu estilo é clean, contemporâneo e minimalista, com peças fáceis de combinar para looks chiques e atuais.',
+    tips:['Corte reto','Color blocking','Pantalona','Acessório geométrico'] },
+  esportivo: { name:'Esportivo', color:'#a08a3e',
+    desc:'Seu estilo é casual, descontraído e funcional, priorizando o conforto e o movimento no dia a dia.',
+    tips:['Jeans e camiseta','Tênis','Moletom','Sobreposições práticas'] },
+  criativo: { name:'Criativo', color:'#C89030',
+    desc:'Seu estilo é ousado e único — você adora experimentar combinações, estampas e peças fora do comum.',
+    tips:['Estampas marcantes','Mix inesperado','Acessório statement','Modelagens diferentes'] },
+};
+const STYLE_ORDER = ['tradicional','elegante','romantico','sexy','moderno','esportivo','criativo'];
+
+/* ---------- Perguntas (cada opção ancorada ao estilo real via 's') ---------- */
+const questions = [
+  { type:'text', text:'Qual é a sua principal motivação ao se vestir?',
+    options:[
+      {t:'Quero me sentir confortável e prática, sem perder o estilo.', s:'esportivo'},
+      {t:'Amo me expressar com combinações únicas e criativas.', s:'criativo'},
+      {t:'Quero me sentir romântica, delicada e feminina.', s:'romantico'},
+      {t:'Prefiro looks que destaquem minha confiança e sensualidade.', s:'sexy'},
+      {t:'Busco sofisticação e looks de alto padrão.', s:'elegante'},
+      {t:'Gosto de seguir tendências de forma descomplicada.', s:'moderno'},
+      {t:'Quero transmitir uma imagem profissional e atemporal.', s:'tradicional'},
+    ]},
+  { type:'text', text:'Como você descreveria seu guarda-roupa?',
+    options:[
+      {t:'Básico e funcional, com peças versáteis.', s:'tradicional'},
+      {t:'Repleto de peças criativas e ousadas.', s:'criativo'},
+      {t:'Recheado de vestidos e peças delicadas.', s:'romantico'},
+      {t:'Peças ajustadas que destacam minha silhueta.', s:'sexy'},
+      {t:'Elegante, com cortes clássicos e tons sóbrios.', s:'elegante'},
+      {t:'Esportivo e prático.', s:'esportivo'},
+      {t:'Clean e minimalista, fácil de combinar.', s:'moderno'},
+    ]},
+  { type:'visual', text:'Quais tipo(s) de brinco(s) você escolheria?', multi:2,
+    options:[
+      {icon:'earring_hoop', label:'Argola minimalista', s:'esportivo'},
+      {icon:'earring_drop', label:'Gota elegante', s:'elegante'},
+      {icon:'earring_flower', label:'Flor delicada', s:'romantico'},
+      {icon:'earring_long', label:'Longo brilhante', s:'sexy'},
+      {icon:'earring_chain', label:'Corrente moderna', s:'moderno'},
+      {icon:'earring_round_stone', label:'Argola com pedra', s:'tradicional'},
+      {icon:'earring_fruit', label:'Divertido / criativo', s:'criativo'},
+    ]},
+  { type:'visual', text:'Quais tipo(s) de blusa(s) você mais se identifica?', multi:2,
+    options:[
+      {icon:'top_basic', label:'Básica confortável', s:'esportivo'},
+      {icon:'top_shirt', label:'Camisa elegante', s:'elegante'},
+      {icon:'top_ruffle', label:'Babados delicados', s:'romantico'},
+      {icon:'top_slip', label:'Regata sensual', s:'sexy'},
+      {icon:'top_colorblock', label:'Moderna marcante', s:'moderno'},
+      {icon:'top_print', label:'Estampa tradicional', s:'tradicional'},
+      {icon:'top_bow', label:'Laço criativo', s:'criativo'},
+    ]},
+  { type:'visual', text:'Agora, escolha a(s) calça(s) que você mais gosta:', multi:2,
+    options:[
+      {icon:'pant_jeans', label:'Jeans casual', s:'esportivo'},
+      {icon:'pant_tailored', label:'Alfaiataria elegante', s:'elegante'},
+      {icon:'pant_belt', label:'Cinto delicado', s:'romantico'},
+      {icon:'pant_leather', label:'Couro sensual', s:'sexy'},
+      {icon:'pant_wide', label:'Pantalona moderna', s:'moderno'},
+      {icon:'pant_cargo', label:'Cargo tradicional', s:'tradicional'},
+      {icon:'pant_floral', label:'Estampa criativa', s:'criativo'},
+    ]},
+  { type:'visual', text:'E por fim, escolha o(s) sapato(s) que você mais usa:', multi:2,
+    options:[
+      {icon:'shoe_sneaker', label:'Tênis confortável', s:'esportivo'},
+      {icon:'shoe_heel', label:'Scarpin elegante', s:'elegante'},
+      {icon:'shoe_flat_bow', label:'Sapatilha com laço', s:'romantico'},
+      {icon:'shoe_boot', label:'Bota sensual', s:'sexy'},
+      {icon:'shoe_metallic', label:'Metálico moderno', s:'moderno'},
+      {icon:'shoe_loafer', label:'Loafer tradicional', s:'tradicional'},
+      {icon:'shoe_heeled_sandal', label:'Sandália criativa', s:'criativo'},
+    ]},
+  { type:'text', text:'Como você se sente ao usar um look que combina com sua personalidade?',
+    options:[
+      {t:'Confortável e ativa, pronta para qualquer situação.', s:'esportivo'},
+      {t:'Criativa e original, me expressando de verdade.', s:'criativo'},
+      {t:'Feminina e delicada, com energia acolhedora.', s:'romantico'},
+      {t:'Confiante e poderosa, chamando atenção com sutileza.', s:'sexy'},
+      {t:'Sofisticada e segura, em harmonia com meu estilo.', s:'elegante'},
+      {t:'Antenada, no ponto certo das tendências.', s:'moderno'},
+      {t:'Segura e bem apresentada, sempre impecável.', s:'tradicional'},
+    ]},
+];
+
+/* ---------- Estado ---------- */
+const SAVE_KEY = 'luana-teste-estilo-v2';
+let current = -1;        // -1 = intro ; questions.length = resultado
+let answers = [];        // answers[i] = array de índices de opção selecionados
+
+const content = document.getElementById('content');
+const progressBar = document.getElementById('progressBar');
+const nextBtn = document.getElementById('nextBtn');
+const backBtn = document.getElementById('backBtn');
+const footerNav = document.getElementById('footerNav');
+const kbdTip = document.getElementById('kbdTip');
+const toast = document.getElementById('toast');
+
+/* ---------- Persistência ---------- */
+function save(){
+  try{ localStorage.setItem(SAVE_KEY, JSON.stringify({current, answers})); }catch(e){}
+}
+function load(){
+  try{ return JSON.parse(localStorage.getItem(SAVE_KEY)); }catch(e){ return null; }
+}
+function clearSave(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+function hasProgress(){
+  return answers.some(a => a && a.length) && current > -1 && current < questions.length;
+}
+
+/* ---------- Render: opção visual (foto ou ícone) ---------- */
+function optMedia(o){
+  return o.img
+    ? `<img src="${o.img}" alt="${o.label}" loading="lazy">`
+    : (ICONS[o.icon] || '');
+}
+
+/* ---------- Telas ---------- */
+function renderIntro(){
+  // guarda o ponto de retomada ANTES de zerar (hasProgress usa current)
+  const resumeTarget = hasProgress() ? current : -1;
+  current = -1;
+
+  footerNav.classList.remove('hidden');
+  backBtn.style.visibility = 'hidden';
+  nextBtn.textContent = 'começar teste →';
+  nextBtn.disabled = false;
+  kbdTip.textContent = '';
+  progressBar.style.width = '0%';
+
+  const resume = resumeTarget > -1
+    ? `<button class="btn-ghost" id="resumeBtn">↩ continuar de onde parei</button>` : '';
+
+  content.className = 'content fade';
+  content.innerHTML = `
+    <div class="intro">
+      <p class="lead">Descubra os estilos que mais combinam com a sua essência.</p>
+      <p>Responda cada pergunta com o que mais tem a ver com você. Em algumas, escolha pela imagem que representa seu gosto — você pode marcar até <strong>2 opções</strong>. Ao final, revelamos o seu perfil de estilo.</p>
+      <div class="intro-cta">
+        ${resume}
+      </div>
+    </div>
+  `;
+  const rb = document.getElementById('resumeBtn');
+  if(rb) rb.addEventListener('click', ()=>{ goto(resumeTarget); });
+}
+
+function renderQuestion(i){
+  current = i;
+  footerNav.classList.remove('hidden');
+  backBtn.style.visibility = 'visible';
+  const q = questions[i];
+  const selected = answers[i] || [];
+  const isMulti = q.type === 'visual';
+  const maxMulti = q.multi || 1;
+
+  progressBar.style.width = (i / questions.length * 100) + '%';
+
+  let optsHtml;
+  if(q.type === 'text'){
+    optsHtml = `<div class="options-text">` + q.options.map((o,idx)=>
+      `<div class="opt-text ${selected.includes(idx)?'selected':''}" data-idx="${idx}" role="button" tabindex="0">
+        <span class="badge">${idx+1}</span><span>${o.t}</span>
+      </div>`
+    ).join('') + `</div>`;
+  } else {
+    optsHtml = `<div class="options-visual">` + q.options.map((o,idx)=>
+      `<div class="opt-visual ${selected.includes(idx)?'selected':''}" data-idx="${idx}" role="button" tabindex="0">
+        <span class="check">${CHECK}</span>
+        ${optMedia(o)}
+        <span class="opt-label">${o.label}</span>
+      </div>`
+    ).join('') + `</div>`;
+  }
+
+  const hint = isMulti
+    ? `<div class="hint"><span>Você pode marcar até ${maxMulti} opções.</span><span class="count" id="selCount">${selected.length}/${maxMulti}</span></div>`
+    : '';
+
+  content.className = 'content fade';
+  content.innerHTML = `
+    <div class="q-counter">Pergunta ${i+1} de ${questions.length}</div>
+    <div class="q-text">${q.text}</div>
+    ${hint}
+    ${optsHtml}
+  `;
+
+  content.querySelectorAll('[data-idx]').forEach(el=>{
+    const handler = ()=> toggle(i, +el.dataset.idx, isMulti, maxMulti);
+    el.addEventListener('click', handler);
+    el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); handler(); } });
+  });
+
+  kbdTip.innerHTML = isMulti
+    ? 'Teclas <strong>1–7</strong> para marcar · <strong>Enter</strong> avança · <strong>←</strong> volta'
+    : 'Teclas <strong>1–7</strong> para escolher · <strong>Enter</strong> avança · <strong>←</strong> volta';
+
+  updateNextState();
+  save();
+}
+
+function toggle(i, idx, isMulti, maxMulti){
+  let arr = answers[i] ? answers[i].slice() : [];
+  if(isMulti){
+    if(arr.includes(idx)) arr = arr.filter(x=>x!==idx);
+    else { if(arr.length >= maxMulti) arr.shift(); arr.push(idx); }
+  } else {
+    arr = [idx];
+  }
+  answers[i] = arr;
+
+  // atualização leve (sem re-render completo) para manter fluidez
+  content.querySelectorAll('[data-idx]').forEach(el=>{
+    el.classList.toggle('selected', arr.includes(+el.dataset.idx));
+  });
+  const cnt = document.getElementById('selCount');
+  if(cnt) cnt.textContent = `${arr.length}/${maxMulti}`;
+
+  updateNextState();
+  save();
+
+  // auto-avanço em perguntas de escolha única
+  if(!isMulti){ setTimeout(()=> goNext(), 260); }
+}
+
+function updateNextState(){
+  const arr = answers[current] || [];
+  nextBtn.disabled = arr.length === 0;
+  nextBtn.textContent = current === questions.length - 1 ? 'ver resultado →' : 'continuar →';
+}
+
+function goto(i){
+  if(i < 0) return renderIntro();
+  if(i >= questions.length) return renderResult();
+  renderQuestion(i);
+}
+function goNext(){
+  if((answers[current]||[]).length === 0) return;
+  goto(current + 1);
+}
+function goBack(){
+  if(current <= 0){ current = -1; return renderIntro(); }
+  goto(current - 1);
+}
+
+/* ---------- Resultado ---------- */
+function computeScores(){
+  const scores = {}; STYLE_ORDER.forEach(k => scores[k] = 0);
+  answers.forEach((arr, qi)=>{
+    (arr||[]).forEach(idx=>{
+      const o = questions[qi].options[idx];
+      if(o && scores[o.s] != null) scores[o.s]++;
+    });
+  });
+  return scores;
+}
+
+function renderResult(){
+  current = questions.length;
+  footerNav.classList.add('hidden');
+  kbdTip.textContent = '';
+  progressBar.style.width = '100%';
+  // teste finalizado: limpa o progresso salvo, para que um novo acesso
+  // comece do zero (só mantém as respostas em memória para esta tela)
+  clearSave();
+
+  const scores = computeScores();
+  const total = Object.values(scores).reduce((a,b)=>a+b,0) || 1;
+
+  const ranked = STYLE_ORDER
+    .map(k => ({k, v:scores[k], pct: Math.round(scores[k]/total*100)}))
+    .sort((a,b)=> b.v - a.v);
+
+  const top = ranked.filter(r => r.v > 0).slice(0,3);
+  const rankLabel = ['Estilo principal','Segundo estilo','Terceiro estilo'];
+
+  const cards = top.map((r, idx)=>{
+    const s = STYLES[r.k];
+    return `<div class="style-card" style="--sc:${s.color}; animation-delay:${idx*0.08}s">
+      <div class="rank">${rankLabel[idx]}</div>
+      <div class="top"><h3>${s.name}</h3><span class="match">${r.pct}%</span></div>
+      <p>${s.desc}</p>
+      <ul class="tips">${s.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div>`;
+  }).join('');
+
+  const dnaRows = ranked.map((r, idx)=>{
+    const s = STYLES[r.k];
+    return `<div class="dna-row">
+      <span class="name">${s.name}</span>
+      <span class="dna-track"><span class="dna-fill" style="width:${r.pct}%; background:${s.color}; animation-delay:${idx*0.06}s"></span></span>
+      <span class="pct">${r.pct}%</span>
+    </div>`;
+  }).join('');
+
+  content.className = 'content fade';
+  content.innerHTML = `
+    <div class="result">
+      <div class="eyebrow">Seu perfil de estilo</div>
+      <h2>${top.length ? STYLES[top[0].k].name : 'Seu resultado'}</h2>
+      <div class="sub">Os estilos que mais combinam com você</div>
+      ${cards}
+      <div class="dna">
+        <h4>Seu DNA de estilo</h4>
+        <div class="cap">Todo mundo é uma mistura. Veja a proporção de cada estilo em você:</div>
+        ${dnaRows}
+      </div>
+      <div class="result-actions">
+        <button class="btn-primary" id="restartBtn">refazer o teste</button>
+        <button class="btn-ghost" id="copyBtn">${iconCopy()} copiar resultado</button>
+        <button class="btn-ghost" id="waBtn">${iconWa()} WhatsApp</button>
+      </div>
+    </div>
+  `;
+
+  const summary = buildSummary(top);
+  document.getElementById('restartBtn').addEventListener('click', restart);
+  document.getElementById('copyBtn').addEventListener('click', ()=> copyResult(summary));
+  document.getElementById('waBtn').addEventListener('click', ()=>{
+    window.open('https://wa.me/?text=' + encodeURIComponent(summary), '_blank');
+  });
+}
+
+function buildSummary(top){
+  const lines = top.map((r,i)=> `${i+1}º ${STYLES[r.k].name} — ${r.pct}%`).join('\n');
+  return `Meu resultado no Teste de Estilo da Luana Laitart ✨\n\n${lines}\n\nDescubra o seu também!`;
+}
+
+async function copyResult(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast('Resultado copiado! ✨');
+  }catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); showToast('Resultado copiado! ✨'); }
+    catch(_){ showToast('Não foi possível copiar'); }
+    document.body.removeChild(ta);
+  }
+}
+
+function restart(){
+  current = -1; answers = []; clearSave();
+  renderIntro();
+}
+
+/* ---------- Utilidades ---------- */
+let toastTimer;
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove('show'), 2200);
+}
+function iconCopy(){ return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`; }
+function iconWa(){ return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.7-4.2-4.9-4.4-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.5.1.2.6 1 1.4 1.7 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>`; }
+
+/* ---------- Navegação (botões + teclado) ---------- */
+nextBtn.addEventListener('click', ()=>{
+  if(current === -1){ renderQuestion(0); return; }
+  goNext();
+});
+backBtn.addEventListener('click', goBack);
+
+document.addEventListener('keydown', (e)=>{
+  if(current < 0 || current >= questions.length) return;
+  if(e.key >= '1' && e.key <= '9'){
+    const idx = +e.key - 1;
+    const q = questions[current];
+    if(idx < q.options.length){
+      toggle(current, idx, q.type==='visual', q.multi||1);
+    }
+  } else if(e.key === 'Enter'){
+    if(!nextBtn.disabled) goNext();
+  } else if(e.key === 'ArrowLeft' || e.key === 'Backspace'){
+    if(e.key === 'Backspace' && /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+    e.preventDefault(); goBack();
+  } else if(e.key === 'ArrowRight'){
+    if(!nextBtn.disabled) goNext();
+  }
+});
+
+/* ---------- Início (com retomada de progresso) ---------- */
+(function init(){
+  const saved = load();
+  if(saved && Array.isArray(saved.answers)){
+    answers = saved.answers;
+    current = typeof saved.current === 'number' ? saved.current : -1;
+  }
+  renderIntro();
+})();
+</script>
+
+</body>
+</html>
