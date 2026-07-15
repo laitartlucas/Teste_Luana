@@ -1,0 +1,12 @@
+{
+  "name": "teste-de-estilo-luana",
+  "version": "1.0.0",
+  "description": "Teste de Estilo interativo da Luana Laitart",
+  "private": true,
+  "scripts": {
+    "start": "serve -l $PORT ."
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
