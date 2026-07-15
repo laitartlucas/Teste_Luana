@@ -191,16 +191,17 @@
     border:1.5px solid var(--line);
     border-radius:14px;
     background:var(--paper-2);
-    padding:12px 6px 12px;
+    padding:0;
+    overflow:hidden;
     cursor:pointer; text-align:center;
     color:var(--ink);
     transition:border-color .15s, background .15s, transform .1s, box-shadow .15s;
   }
   .opt-visual:hover{border-color:var(--gold-light); background:#fff; transform:translateY(-2px); box-shadow:0 10px 20px -12px rgba(42,21,8,.35);}
   .opt-visual.selected{border-color:var(--gold); background:var(--gold-tint); box-shadow:inset 0 0 0 1px var(--gold);}
-  .opt-visual svg{width:46px; height:46px; margin-bottom:6px;}
-  .opt-visual img{width:100%; height:74px; object-fit:cover; border-radius:9px; margin-bottom:6px; display:block;}
-  .opt-label{font-size:11px; line-height:1.25; color:var(--ink-soft); display:block;}
+  .opt-visual svg{width:46px; height:46px; margin:12px 0 6px;}
+  .opt-visual img{width:100%; aspect-ratio:1/1; height:auto; object-fit:cover; display:block;}
+  .opt-label{font-size:11px; line-height:1.25; color:var(--ink-soft); display:block; padding:8px 6px 10px;}
   .opt-visual .check{
     position:absolute; top:7px; right:7px;
     width:20px;height:20px; border-radius:50%;
@@ -300,7 +301,6 @@
     .header h1{font-size:23px;}
     .q-text{font-size:19px;}
     .options-visual{grid-template-columns:repeat(3,1fr); gap:10px;}
-    .opt-visual img{height:64px;}
     .kbd-tip{display:none;}
   }
   @media (max-width:360px){
@@ -429,43 +429,43 @@ const questions = [
     ]},
   { type:'visual', text:'Quais tipo(s) de brinco(s) você escolheria?', multi:2,
     options:[
-      {icon:'earring_hoop', label:'Argola minimalista', s:'esportivo'},
-      {icon:'earring_drop', label:'Gota elegante', s:'elegante'},
-      {icon:'earring_flower', label:'Flor delicada', s:'romantico'},
-      {icon:'earring_long', label:'Longo brilhante', s:'sexy'},
-      {icon:'earring_chain', label:'Corrente moderna', s:'moderno'},
-      {icon:'earring_round_stone', label:'Argola com pedra', s:'tradicional'},
-      {icon:'earring_fruit', label:'Divertido / criativo', s:'criativo'},
+      {icon:'earring_hoop', label:'Argola minimalista', s:'esportivo', img:'img/argola-minimalista.jpg'},
+      {icon:'earring_drop', label:'Gota elegante', s:'elegante', img:'img/gota-elegante.jpg'},
+      {icon:'earring_flower', label:'Flor delicada', s:'romantico', img:'img/flor-delicada.jpg'},
+      {icon:'earring_long', label:'Longo brilhante', s:'sexy', img:'img/longo-brilhante.jpg'},
+      {icon:'earring_chain', label:'Corrente moderna', s:'moderno', img:'img/corrente-moderna.jpg'},
+      {icon:'earring_round_stone', label:'Argola com pedra', s:'tradicional', img:'img/argola-com-pedra.jpg'},
+      {icon:'earring_fruit', label:'Divertido / criativo', s:'criativo', img:'img/brinco-criativo.jpg'},
     ]},
   { type:'visual', text:'Quais tipo(s) de blusa(s) você mais se identifica?', multi:2,
     options:[
-      {icon:'top_basic', label:'Básica confortável', s:'esportivo'},
-      {icon:'top_shirt', label:'Camisa elegante', s:'elegante'},
-      {icon:'top_ruffle', label:'Babados delicados', s:'romantico'},
-      {icon:'top_slip', label:'Regata sensual', s:'sexy'},
-      {icon:'top_colorblock', label:'Moderna marcante', s:'moderno'},
-      {icon:'top_print', label:'Estampa tradicional', s:'tradicional'},
-      {icon:'top_bow', label:'Laço criativo', s:'criativo'},
+      {icon:'top_basic', label:'Básica confortável', s:'esportivo', img:'img/basica-confortavel.jpg'},
+      {icon:'top_shirt', label:'Camisa elegante', s:'elegante', img:'img/camisa-elegante.jpg'},
+      {icon:'top_ruffle', label:'Babados delicados', s:'romantico', img:'img/babados-delicados.jpg'},
+      {icon:'top_slip', label:'Regata sensual', s:'sexy', img:'img/regata-sensual.jpg'},
+      {icon:'top_colorblock', label:'Moderna marcante', s:'moderno', img:'img/moderna-marcante.jpg'},
+      {icon:'top_print', label:'Estampa tradicional', s:'tradicional', img:'img/estampa-tradicional.jpg'},
+      {icon:'top_bow', label:'Laço criativo', s:'criativo', img:'img/laco-criativo.jpg'},
     ]},
   { type:'visual', text:'Agora, escolha a(s) calça(s) que você mais gosta:', multi:2,
     options:[
-      {icon:'pant_jeans', label:'Jeans casual', s:'esportivo'},
-      {icon:'pant_tailored', label:'Alfaiataria elegante', s:'elegante'},
-      {icon:'pant_belt', label:'Cinto delicado', s:'romantico'},
-      {icon:'pant_leather', label:'Couro sensual', s:'sexy'},
-      {icon:'pant_wide', label:'Pantalona moderna', s:'moderno'},
-      {icon:'pant_cargo', label:'Cargo tradicional', s:'tradicional'},
-      {icon:'pant_floral', label:'Estampa criativa', s:'criativo'},
+      {icon:'pant_jeans', label:'Jeans casual', s:'esportivo', img:'img/jeans-casual.jpg'},
+      {icon:'pant_tailored', label:'Alfaiataria elegante', s:'elegante', img:'img/alfaiataria-elegante.jpg'},
+      {icon:'pant_belt', label:'Cinto delicado', s:'romantico', img:'img/cinto-delicado.jpg'},
+      {icon:'pant_leather', label:'Couro sensual', s:'sexy', img:'img/couro-sensual.jpg'},
+      {icon:'pant_wide', label:'Pantalona moderna', s:'moderno', img:'img/pantalona-moderna.jpg'},
+      {icon:'pant_cargo', label:'Cargo tradicional', s:'tradicional', img:'img/cargo-tradicional.jpg'},
+      {icon:'pant_floral', label:'Estampa criativa', s:'criativo', img:'img/estampa-criativa.jpg'},
     ]},
   { type:'visual', text:'E por fim, escolha o(s) sapato(s) que você mais usa:', multi:2,
     options:[
-      {icon:'shoe_sneaker', label:'Tênis confortável', s:'esportivo'},
-      {icon:'shoe_heel', label:'Scarpin elegante', s:'elegante'},
-      {icon:'shoe_flat_bow', label:'Sapatilha com laço', s:'romantico'},
-      {icon:'shoe_boot', label:'Bota sensual', s:'sexy'},
-      {icon:'shoe_metallic', label:'Metálico moderno', s:'moderno'},
-      {icon:'shoe_loafer', label:'Loafer tradicional', s:'tradicional'},
-      {icon:'shoe_heeled_sandal', label:'Sandália criativa', s:'criativo'},
+      {icon:'shoe_sneaker', label:'Tênis confortável', s:'esportivo', img:'img/tenis-confortavel.jpg'},
+      {icon:'shoe_heel', label:'Scarpin elegante', s:'elegante', img:'img/scarpin-elegante.jpg'},
+      {icon:'shoe_flat_bow', label:'Sapatilha com laço', s:'romantico', img:'img/sapatilha-laco.jpg'},
+      {icon:'shoe_boot', label:'Bota sensual', s:'sexy', img:'img/bota-sensual.jpg'},
+      {icon:'shoe_metallic', label:'Metálico moderno', s:'moderno', img:'img/metalico-moderno.jpg'},
+      {icon:'shoe_loafer', label:'Loafer tradicional', s:'tradicional', img:'img/loafer-tradicional.jpg'},
+      {icon:'shoe_heeled_sandal', label:'Sandália criativa', s:'criativo', img:'img/sandalia-criativa.jpg'},
     ]},
   { type:'text', text:'Como você se sente ao usar um look que combina com sua personalidade?',
     options:[
