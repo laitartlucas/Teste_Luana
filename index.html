@@ -133,9 +133,12 @@
     font-size:14px; font-weight:700;
     letter-spacing:.4px;
     cursor:pointer;
+    text-decoration:none;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
     box-shadow:0 10px 24px -10px rgba(168,112,32,0.7);
     transition:transform .15s ease, box-shadow .2s ease, background .3s ease;
   }
+  .btn-primary svg{width:16px; height:16px;}
   .btn-primary:hover{background:var(--grad-gold-hov); transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(168,112,32,0.8);}
   .btn-primary:active{transform:translateY(0);}
   .btn-primary:disabled{opacity:.45; cursor:not-allowed; box-shadow:none; transform:none;}
@@ -405,6 +408,17 @@ const STYLES = {
 };
 const STYLE_ORDER = ['tradicional','elegante','romantico','sexy','moderno','esportivo','criativo'];
 
+/* ---------- Referências de looks (Pinterest) por estilo ---------- */
+const REF_LINKS = {
+  moderno:     'https://pin.it/2iK4DlMJN',
+  sexy:        'https://pin.it/5kygb1vlI',
+  esportivo:   'https://pin.it/4hHHKXJIr',
+  romantico:   'https://pin.it/6zaWRsOgK',
+  criativo:    'https://pin.it/6ZQ3yjyVr',
+  tradicional: 'https://pin.it/6XWDbWg0p',
+  elegante:    'https://pin.it/6WYYjkWy4',
+};
+
 /* ---------- Perguntas (cada opção ancorada ao estilo real via 's') ---------- */
 const questions = [
   { type:'text', text:'Qual é a sua principal motivação ao se vestir?',
@@ -614,9 +628,6 @@ function toggle(i, idx, isMulti, maxMulti){
 
   updateNextState();
   save();
-
-  // auto-avanço em perguntas de escolha única
-  if(!isMulti){ setTimeout(()=> goNext(), 260); }
 }
 
 function updateNextState(){
@@ -689,6 +700,13 @@ function renderResult(){
     </div>`;
   }).join('');
 
+  // botão de referências de looks, conforme o estilo principal
+  const mainStyle = top.length ? top[0].k : null;
+  const refUrl = mainStyle ? REF_LINKS[mainStyle] : null;
+  const refBtn = refUrl
+    ? `<a class="btn-primary" id="refBtn" href="${refUrl}" target="_blank" rel="noopener">${iconPin()} Referências de looks</a>`
+    : '';
+
   content.className = 'content fade';
   content.innerHTML = `
     <div class="result">
@@ -702,7 +720,8 @@ function renderResult(){
         ${dnaRows}
       </div>
       <div class="result-actions">
-        <button class="btn-primary" id="restartBtn">refazer o teste</button>
+        ${refBtn}
+        <button class="btn-ghost" id="restartBtn">refazer o teste</button>
         <button class="btn-ghost" id="copyBtn">${iconCopy()} copiar resultado</button>
         <button class="btn-ghost" id="waBtn">${iconWa()} WhatsApp</button>
       </div>
@@ -749,6 +768,7 @@ function showToast(msg){
   toastTimer = setTimeout(()=> toast.classList.remove('show'), 2200);
 }
 function iconCopy(){ return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`; }
+function iconPin(){ return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.7 19.3c-.1-.8-.1-2 .1-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.8 1.5 1.8 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-3.9-3.6-2.8 0-4.6 2.1-4.6 4.5 0 .8.2 1.4.6 1.8.2.2.2.3.1.5l-.2.9c-.1.3-.3.4-.5.2-1-.4-1.5-1.5-1.5-2.9 0-2.4 2-5.2 6-5.2 3.2 0 5.3 2.3 5.3 4.8 0 3.3-1.8 5.7-4.5 5.7-.9 0-1.8-.5-2.1-1l-.6 2.3c-.2.7-.6 1.5-1 2.1A10 10 0 1 0 12 2Z"/></svg>`; }
 function iconWa(){ return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.7-4.2-4.9-4.4-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.5.1.2.6 1 1.4 1.7 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>`; }
 
 /* ---------- Navegação (botões + teclado) ---------- */
