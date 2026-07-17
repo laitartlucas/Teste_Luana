@@ -272,7 +272,22 @@
   @keyframes grow{from{transform:scaleX(0);} to{transform:scaleX(1);}}
   .dna-row .pct{flex:0 0 38px; text-align:right; font-size:11.5px; font-weight:700; color:var(--ink);}
 
-  .result-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:26px;}
+  /* Referências de looks (top 3) */
+  .ref-links{margin-top:26px;}
+  .ref-title{
+    font-size:11px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold-deep); font-weight:700; margin-bottom:12px;
+  }
+  .ref-btns{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+  .ref-btns .btn-primary{flex:1 1 auto; min-width:170px;}
+  .btn-primary.ref-secondary{
+    background:var(--paper-2); color:var(--ink);
+    border:1.5px solid var(--gold-light);
+    box-shadow:none;
+  }
+  .btn-primary.ref-secondary:hover{background:#fff; border-color:var(--gold);}
+
+  .result-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
   .btn-ghost{
     font-family:var(--sans);
     background:#fff; color:var(--ink);
@@ -700,11 +715,13 @@ function renderResult(){
     </div>`;
   }).join('');
 
-  // botão de referências de looks, conforme o estilo principal
-  const mainStyle = top.length ? top[0].k : null;
-  const refUrl = mainStyle ? REF_LINKS[mainStyle] : null;
-  const refBtn = refUrl
-    ? `<a class="btn-primary" id="refBtn" href="${refUrl}" target="_blank" rel="noopener">${iconPin()} Referências de looks</a>`
+  // botões de referências de looks: um para cada estilo do top 3
+  const refBtns = top
+    .filter(r => REF_LINKS[r.k])
+    .map((r, idx) => `<a class="btn-primary ${idx>0?'ref-secondary':''}" href="${REF_LINKS[r.k]}" target="_blank" rel="noopener">${iconPin()} ${idx+1}º · ${STYLES[r.k].name}</a>`)
+    .join('');
+  const refBtn = refBtns
+    ? `<div class="ref-links"><div class="ref-title">Referências de looks</div><div class="ref-btns">${refBtns}</div></div>`
     : '';
 
   content.className = 'content fade';
